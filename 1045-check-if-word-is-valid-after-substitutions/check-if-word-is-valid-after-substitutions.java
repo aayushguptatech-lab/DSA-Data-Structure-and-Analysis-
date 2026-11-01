@@ -5,31 +5,50 @@ Agar abc hain → teeno ko pop kar do.
 Agar abc nahi hain → unhe stack mein rehne do.
 End mein stack empty hai toh true, otherwise false.
 */
+// class Solution {
+//     public boolean isValid(String s) {
+//         Stack<Character> st = new Stack<>();
+
+//         for(int i=0; i<s.length(); i++){
+//             char ch = s.charAt(i);
+//             st.push(ch);
+//             if(st.size() >= 3){
+//                 char c = st.pop();
+//                 char b = st.pop();
+//                 char a = st.pop();
+//                 if(a == 'a' && b == 'b' && c == 'c'){
+//                     //remove it
+//                 }else{
+//                     st.push(a);
+//                     st.push(b);
+//                     st.push(c);
+//                 }
+//             }
+//         }
+//         if(st.size() == 0){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
+// }
+
+
+
+// using stringbuilder
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> st = new Stack<>();
-
+        StringBuilder st = new StringBuilder();
+        
         for(int i=0; i<s.length(); i++){
             char ch = s.charAt(i);
-            st.push(ch);
-            if(st.size() >= 3){
-                char c = st.pop();
-                char b = st.pop();
-                char a = st.pop();
+            st.append(ch);
+            int n = st.length();
 
-                if(a == 'a' && b == 'b' && c == 'c'){
-                    //remove it
-                }else{
-                    st.push(a);
-                    st.push(b);
-                    st.push(c);
-                }
+            if(n>=3 && st.charAt(n-3) == 'a' && st.charAt(n-2) == 'b' && st.charAt(n-1) == 'c'){
+                st.delete(n-3, n);
             }
         }
-        if(st.size() == 0){
-            return true;
-        }else{
-            return false;
-        }
+        return (st.length()==0) ? true : false; 
     }
 }
